@@ -12,6 +12,8 @@ La red está dividida en tres zonas:
 - Servidores Internos
 - Clientes Internos
 
+![topology](/screenshots/topology.jpg)
+
 ## Tabla de Nodos
 
 | Zona             | Nodo  | Interfaz | Interfaz DMZ | Interfaz Servidores Internos | Interfaz Clientes Internos | Dirección IP |
@@ -31,9 +33,15 @@ La red está dividida en tres zonas:
 
 ## Configuración Principal
 
+![config](/screenshots/ip_brief.jpg)
+
 ### Gateway-Firewall (Cisco)
 
+![fire](/screenshots/firewall_setup.jpg)
+
 #### NAT y Enrutamiento
+
+![nat](/screenshots/nat_config.jpg)
 
 ```shell
 ip routing
@@ -51,6 +59,8 @@ ip route 0.0.0.0 0.0.0.0 192.168.36.2
 ```
 
 #### Pools de DHCP
+
+![dchp](/screenshots/dhcp.jpg)
 
 ```shell
 ip dhcp pool INTERNAL_CLIENTS
@@ -76,6 +86,8 @@ access-list 100 permit ip any any
 
 ### Servidor Proxy (Squid en Ubuntu SRV1)
 
+![squid](/screenshots/srv1_squid.jpg)
+
 ```bash
 sudo apt update
 sudo apt install squid apache2-utils
@@ -83,6 +95,8 @@ sudo htpasswd -c /etc/squid/passwords bruno
 ```
 
 #### squid.conf
+
+![config](/screenshots/auth_config.jpg)
 
 ```bash
 auth_param basic program /usr/lib/squid/basic_ncsa_auth /etc/squid/passwords
@@ -97,6 +111,10 @@ http_access deny all
 
 #### Variables de Entorno del Cliente
 
+![auth](/screenshots/allow_proxy_gui.jpg)
+
+![auth_dos](/screenshots/allow_proxy_forever.jpg)
+
 ```bash
 export http_proxy="http://172.16.2.2:3128"
 export https_proxy="http://172.16.2.2:3128"
@@ -109,8 +127,11 @@ export https_proxy="http://172.16.2.2:3128"
 - Los logs de Squid confirman la recepción del tráfico
 - Las ACL bloquean el acceso directo si no se usa el proxy
 
+![curl](/screenshots/curl_request.jpg)
+
+![request](/screenshots/request_firefox_proxy.jpg)
+
 ## Autor
 
-Bruno Paolo Huamán Vela  
+Bruno Paolo Huaman Vela  (Lima, Peru)
 УрФУ – Seguridad de la Información en Sistemas de Telecomunicaciones  
-Grupo РИ-411050
