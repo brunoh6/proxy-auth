@@ -131,10 +131,11 @@ export https_proxy="http://172.16.2.2:3128"
 - Squid logs confirm requests are intercepted
 - ACLs prevent direct external access if not using proxy
 
+![curl](/screenshots/curl_request.jpg)
+
 ![request](/screenshots/request_firefox_proxy.jpg)
 
 ## Author
 
-Bruno Paolo Huamán Vela  
-UrFU – Information Security of Telecommunication Systems  
-Group RI-411050
+Bruno Paolo Huaman Vela  (Lima, Peru)
+UrFU – Information Security of Telecommunication Systems 
