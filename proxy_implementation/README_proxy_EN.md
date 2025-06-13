@@ -12,7 +12,7 @@ The network is divided into three zones:
 - Internal Servers
 - Internal Clients
 
-![Topology Diagram](screenshots/topology.jpg)
+![Topology Diagram](/screenshots/topology.jpg)
 
 ## Node Table
 
