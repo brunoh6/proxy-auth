@@ -16,6 +16,8 @@ The network topology consists of three main zones:
 
 A Cisco router/firewall (GW-FW) connects all segments and applies NAT, routing, and ACLs. The proxy server (Squid) is hosted on SRV1 inside the internal servers zone, enforcing user authentication before allowing access to the internet. Direct access from clients is blocked using ACLs.
 
+![Topology Diagram](screenshots/topology.jpg)
+
 ---
 
 ## Node Table
