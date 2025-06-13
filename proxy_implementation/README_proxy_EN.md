@@ -12,6 +12,8 @@ The network is divided into three zones:
 - Internal Servers
 - Internal Clients
 
+![Topology Diagram](screenshots/topology.jpg)
+
 ## Node Table
 
 | Zone             | Node  | Interface | DMZ Interface | Internal-Servers Interface | Internal-Clients Interface | IP Address   |
@@ -31,9 +33,15 @@ The network is divided into three zones:
 
 ## Main Configuration
 
+![brief](screenshots/ip_brief.jpg)
+
 ### Gateway-Firewall (Cisco)
 
+![fire](screenshots/firewall_setup.jpg)
+
 #### NAT and Routing
+
+![nat](screenshots/nat_config.jpg)
 
 ```shell
 ip routing
@@ -52,6 +60,8 @@ ip route 0.0.0.0 0.0.0.0 192.168.36.2
 
 #### DHCP Pools
 
+![dhcp](screenshots/dhcp.jpg)
+
 ```shell
 ip dhcp pool INTERNAL_CLIENTS
  network 172.16.3.0 255.255.255.0
@@ -68,6 +78,8 @@ ip dhcp pool DMZ
 
 #### ACL Rules
 
+![nat](screenshots/nat_config.jpg)
+
 ```shell
 access-list 100 deny tcp 172.16.3.0 0.0.0.255 any eq www
 access-list 100 deny tcp 172.16.3.0 0.0.0.255 any eq 443
@@ -76,6 +88,10 @@ access-list 100 permit ip any any
 
 ### Proxy Server (Squid on Ubuntu SRV1)
 
+![squid](screenshots/srv1_squid.jpg)
+
+![squid_dos](screenshots/status_squid.jpg)
+
 ```bash
 sudo apt update
 sudo apt install squid apache2-utils
@@ -83,6 +99,8 @@ sudo htpasswd -c /etc/squid/passwords bruno
 ```
 
 #### squid.conf
+
+![auth](screenshots/auth_config.jpg)
 
 ```bash
 auth_param basic program /usr/lib/squid/basic_ncsa_auth /etc/squid/passwords
@@ -97,6 +115,10 @@ http_access deny all
 
 #### Client Environment Variables
 
+![allow](screenshots/allow_proxy_gui.jpg)
+
+![allow_dos](screenshots/allow_proxy_forever.jpg)
+
 ```bash
 export http_proxy="http://172.16.2.2:3128"
 export https_proxy="http://172.16.2.2:3128"
@@ -108,6 +130,8 @@ export https_proxy="http://172.16.2.2:3128"
 - curl returns "407 Proxy Authentication Required" without login
 - Squid logs confirm requests are intercepted
 - ACLs prevent direct external access if not using proxy
+
+![request](screenshots/request_firefox_proxy.jpg)
 
 ## Author
 
